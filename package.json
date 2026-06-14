@@ -1,0 +1,23 @@
+{
+  "name": "temp-pin",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "package:ext": "node scripts/package-extension.js"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.0",
+    "jszip": "^3.10.1",
+    "tailwindcss": "^4.3.0",
+    "vue": "^3.5.34"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-basic-ssl": "^2.3.0",
+    "@vitejs/plugin-vue": "^6.0.6",
+    "vite": "^8.0.12"
+  }
+}
