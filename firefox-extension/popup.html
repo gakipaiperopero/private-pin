@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 280px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #fff;
+      color: #222;
+      padding: 16px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #E60023;
+      margin-bottom: 14px;
+    }
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 4px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 13px;
+      outline: none;
+      margin-bottom: 10px;
+    }
+    input[type="text"]:focus {
+      border-color: #E60023;
+    }
+    .hint {
+      font-size: 11px;
+      color: #999;
+      margin-bottom: 14px;
+    }
+    button {
+      width: 100%;
+      padding: 9px;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-primary {
+      background: #E60023;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .btn-primary:hover { background: #c7001f; }
+    .btn-secondary {
+      background: #f0f0f0;
+      color: #333;
+      margin-bottom: 6px;
+    }
+    .btn-secondary:hover { background: #e0e0e0; }
+    .btn-outline {
+      background: transparent;
+      color: #E60023;
+      border: 1px solid #E60023;
+      margin-top: 8px;
+    }
+    .btn-outline:hover { background: #fff5f5; }
+    .status {
+      font-size: 11px;
+      color: #4caf50;
+      text-align: center;
+      margin-top: 8px;
+      min-height: 16px;
+    }
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .toggle-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #555;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 36px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background: #ccc;
+      border-radius: 20px;
+      transition: 0.2s;
+    }
+    .slider::before {
+      content: '';
+      position: absolute;
+      height: 16px;
+      width: 16px;
+      left: 2px;
+      bottom: 2px;
+      background: #fff;
+      border-radius: 50%;
+      transition: 0.2s;
+    }
+    .switch input:checked + .slider {
+      background: #E60023;
+    }
+    .switch input:checked + .slider::before {
+      transform: translateX(16px);
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #eee;
+      margin: 12px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Private Pin</h1>
+
+  <label for="instanceUrl">Instance URL</label>
+  <input type="text" id="instanceUrl" placeholder="https://gakipaiperopero.github.io/private-pin/" />
+  <p class="hint">The URL of your Private Pin instance</p>
+
+  <div class="toggle-row">
+    <span class="toggle-label">Hover on media</span>
+    <label class="switch">
+      <input type="checkbox" id="hoverToggle" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <button class="btn-primary" id="openBtn">Open Private Pin</button>
+
+  <hr />
+
+  <button class="btn-secondary" id="exportBtn">Export Data</button>
+  <button class="btn-secondary" id="importBtn">Import Data</button>
+
+  <p class="status" id="status"></p>
+
+  <script src="popup.js"></script>
+</body>
+</html>

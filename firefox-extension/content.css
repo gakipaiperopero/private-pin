@@ -1,0 +1,14 @@
+#pp-pin-overlay-global {
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  background: #E60023 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35) !important;
+  pointer-events: auto !important;
+}

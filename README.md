@@ -62,7 +62,7 @@ npm run build
 
 Output goes to `dist/`. Serve with any static file server or use `npm run preview` to test locally.
 
-## 🧩 Chrome Extension
+## 🧩 Chrome Extension & Firefox Add-on
 
 The `chrome-extension/` folder contains a Chrome extension that lets you pin media from any webpage.
 
@@ -78,19 +78,25 @@ The `chrome-extension/` folder contains a Chrome extension that lets you pin med
 - ⚙️ Extension popup (click the toolbar icon) lets you configure the Private Pin instance URL
 - 💾 Export/Import buttons open the app with auto-triggered export or import
 
-**To install from source:**
+**To install from source (Chrome):**
 1. Go to `chrome://extensions`
 2. Enable **Developer mode** (top-right toggle)
 3. Click **Load unpacked**
 4. Select the `chrome-extension/` folder
 
+**To install from source (Firefox):**
+1. Go to `about:debugging#/runtime/this-firefox`
+2. Click **Load Temporary Add-on**
+3. Select `firefox-extension/manifest.json`
+
+> For **permanent** installation on Firefox, the add-on must be signed by Mozilla. You can either:
+> - Submit the `firefox-extension/` folder to [Mozilla Add-on Developer Hub](https://addons.mozilla.org/en-US/developers/) for signing
+> - Or set `xpinstall.signatures.required` to `false` in `about:config` (Nightly/Dev edition only)
+
 **To install from a release:**
 1. Download `private-pin-chrome-extension.zip` from the [Releases page](https://github.com/gakipaiperopero/private-pin/releases)
 2. Unzip the file
-3. Go to `chrome://extensions`
-4. Enable **Developer mode** (top-right toggle)
-5. Click **Load unpacked**
-6. Select the unzipped folder
+3. Follow the Chrome or Firefox steps above with the unzipped folder
 
 **Popup settings:**
 - 🔗 **Instance URL** — change where the extension sends pins (default: the GitHub Pages instance)

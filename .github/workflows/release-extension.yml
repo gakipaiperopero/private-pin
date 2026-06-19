@@ -1,4 +1,4 @@
-name: Release Chrome Extension
+name: Release Extension
 
 on:
   push:
@@ -21,11 +21,13 @@ jobs:
 
       - run: npm ci
 
-      - name: Package extension
+      - name: Package extensions
         run: npm run package:ext
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: private-pin-chrome-extension.zip
+          files: |
+            private-pin-chrome-extension.zip
+            private-pin-firefox-extension.zip
           generate_release_notes: true
