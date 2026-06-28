@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { exportAll, importAll, estimateStorage } from '../utils/db.js'
+import SettingsModal from './SettingsModal.vue'
 
 const emit = defineEmits(['go-home', 'update:searchQuery', 'data-imported'])
 
@@ -10,6 +11,7 @@ const dark = ref(true)
 const searchQuery = ref('')
 const showUserMenu = ref(false)
 const showBellMenu = ref(false)
+const showSettings = ref(false)
 const storageInfo = ref(null)
 const loadingStorage = ref(false)
 const commits = ref([])
@@ -256,6 +258,18 @@ async function loadStorage() {
             <div class="border-t border-gray-100 dark:border-pin-border">
               <button
                 class="w-full px-4 py-3 text-sm text-left text-gray-700 dark:text-gray-200 hover:bg-pin-gray dark:hover:bg-[#303030] transition cursor-pointer flex items-center gap-3"
+                @click="showSettings = true; showUserMenu = false"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                Settings
+              </button>
+            </div>
+            <div class="border-t border-gray-100 dark:border-pin-border">
+              <button
+                class="w-full px-4 py-3 text-sm text-left text-gray-700 dark:text-gray-200 hover:bg-pin-gray dark:hover:bg-[#303030] transition cursor-pointer flex items-center gap-3"
                 @click="loadStorage"
               >
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -269,4 +283,6 @@ async function loadStorage() {
       </div>
     </div>
   </nav>
+
+  <SettingsModal v-if="showSettings" @close="showSettings = false" />
 </template>

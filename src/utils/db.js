@@ -228,7 +228,8 @@ export async function exportAll(mediaDir = 'media') {
     }),
   ])
 
-  const metadata = { version: DB_VERSION, boards }
+  const savedColors = localStorage.getItem('pin-color-settings')
+  const metadata = { version: DB_VERSION, boards, colors: savedColors }
   const zip = new JSZip()
 
   const dir = mediaDir.replace(/\/$/, '')
@@ -254,7 +255,10 @@ export async function importAll(blob) {
   const metaFile = zip.file('metadata.json')
   if (!metaFile) throw new Error('Invalid backup: missing metadata.json')
   const metadata = JSON.parse(await metaFile.async('string'))
-  const { pins, boards } = metadata
+  const { pins, boards, colors } = metadata
+  if (colors) {
+    localStorage.setItem('pin-color-settings', colors)
+  }
 
   for (const pin of pins) {
     if (typeof pin.image === 'string' && !pin.image.startsWith('http') && !pin.image.startsWith('data:')) {

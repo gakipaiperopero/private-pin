@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { getAllPins, getAllBoards, deletePin, updatePin, exportAll, importAll } from './utils/db.js'
+import { initColors } from './utils/colors.js'
 import PinNav from './components/PinNav.vue'
 import BoardList from './components/BoardList.vue'
 import BoardView from './components/BoardView.vue'
@@ -168,6 +169,7 @@ function onAddBoardSaved() {
 }
 
 function onDataImported() {
+  initColors()
   loadSearchData()
   boardListRef.value?.loadBoards()
   if (currentView.value === 'board') {
@@ -227,6 +229,7 @@ function onPaste(e) {
 }
 
 onMounted(() => {
+  initColors()
   loadSearchData()
   document.addEventListener('paste', onPaste)
   const params = new URLSearchParams(location.search)
@@ -264,6 +267,7 @@ onMounted(() => {
       if (!file) return
       try {
         await importAll(file)
+        initColors()
         loadSearchData()
         boardListRef.value?.loadBoards()
         if (currentView.value === 'board') {
